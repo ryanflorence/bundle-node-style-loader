@@ -1,37 +1,31 @@
-# bundle loader for webpack
+# bundle loader for webpack with node-style callback signature
+
+Identical to [bundle-loader](https://github.com/webpack/bundle-loader) but has node-style callback signatures.
+
+## Installation
+
+```
+npm install bundle-node-style-loader
+```
 
 ## Usage
 
-[Documentation: Using loaders](http://webpack.github.io/docs/using-loaders.html)
+```js
+import loadThing from 'bundle?lazy./thing'
 
-``` javascript
-// The chunk is requested, when you require the bundle
-var waitForChunk = require("bundle!./file.js");
+// instead of the bundle loader api:
+loadThing((thing) => {})
 
-// To wait until the chunk is available (and get the exports)
-//  you need to async wait for it.
-waitForChunk(function(file) {
-	// use file like is was required with
-	// var file = require("./file.js");
-});
-// wraps the require in a require.ensure block
+// you get node-style callbacks:
+loadthing((err, thing) => {})
 ```
 
-The file is requested when you require the bundle loader. If you want it to request it lazy, use:
+It always sends `null` for the error, but this way it pairs well with
+other libs, like, say ... React Router:
 
-``` javascript
-var load = require("bundle?lazy!./file.js");
-
-// The chunk is not requested until you call the load function
-load(function(file) {
-
-});
-```
-
-You may set name for bundle (`name` query parameter). See [documentation](https://github.com/webpack/loader-utils#interpolatename).
-
-``` javascript
-require("bundle?lazy&name=my-chunk!./file.js");
+```js
+import loadInvoices from 'bundle?lazy!./Invoices'
+<Route path="/stuff" getComponent={loadInvoices}/>
 ```
 
 ## License

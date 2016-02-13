@@ -1,8 +1,8 @@
 {
-  "name": "bundle-loader",
+  "name": "bundle-node-style-loader",
   "version": "0.5.4",
-  "author": "Tobias Koppers @sokra",
-  "description": "bundle loader module for webpack",
+  "authors": [ "Tobias Koppers @sokra", "Ryan Florence @ryanflorence" ],
+  "description": "bundle loader module for webpack but with node-style callback signatures",
   "dependencies": {
     "loader-utils": "0.2.x"
   },
@@ -14,6 +14,6 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git://github.com/webpack/bundle-loader.git"
+    "url": "git://github.com/ryanflorence/bundle-node-style-loader.git"
   }
 }
